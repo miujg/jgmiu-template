@@ -87,7 +87,9 @@ module.exports = {
         extensions: ['.js','.jsx'],
         // 别名
         alias: {
-            images: path.join(process.cwd(), 'src/public/images')
+            images: path.join(process.cwd(), 'src/public/images'),
+            com: path.join(process.cwd(),'src/component'),
+            con: path.join(process.cwd(), 'src/containers')
         }
     }
 }

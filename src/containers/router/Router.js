@@ -3,7 +3,9 @@
 */
 import React from 'react'
 
-import {BrowserRouter, Switch ,Route} from 'react-router-dom'
+import {HashRouter, Switch ,Route} from 'react-router-dom'
+
+import {Index, Person} from 'con/index'
 
 export default class Router extends React.Component{
     constructor(props) {
@@ -15,11 +17,12 @@ export default class Router extends React.Component{
 
     render() {
         return(
-            <BrowserRouter>
+            <HashRouter>
                 <Switch>
-                    <Route  />
+                    <Route path='/person'> <Person /> </Route>
+                    <Route path='/'> <Index /></Route>
                 </Switch>
-            </BrowserRouter>
+            </HashRouter>
         )
     }
 }
