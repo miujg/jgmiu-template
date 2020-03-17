@@ -21,6 +21,6 @@ module.exports = {
             name: '_dll_[name]',
             // 生成映射文件
             path: path.resolve(__dirname, '../dll', 'manifest.json')
-        })
+        }),
     ]
 }

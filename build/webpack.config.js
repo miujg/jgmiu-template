@@ -42,9 +42,12 @@ module.exports = {
                 from: path.resolve(__dirname, '../dll'),
                 to: './'
             }
-        ])
+        ]),
+        // 
+        new webpack.IgnorePlugin(/\.\/locale/,/moment/)
     ],
     module: {
+        noParse: /jquery|lodash/,
         rules: [
             // 文件处理
             {
