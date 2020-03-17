@@ -4,8 +4,9 @@
 const path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin')
     MiniCssExtractPlugin = require('mini-css-extract-plugin'), // 用于css分离
-    CopyWebpackPlugin = require('copy-webpack-plugin')
-    webpack = require('webpack')
+    CopyWebpackPlugin = require('copy-webpack-plugin'),
+    webpack = require('webpack'),
+    Happypack = require('happypack')
 
 module.exports = {
     entry: path.resolve(__dirname, '../src/index.js'),
@@ -42,9 +43,22 @@ module.exports = {
                 from: path.resolve(__dirname, '../dll'),
                 to: './'
             }
-        ]),
+        ]), 
         // 
-        new webpack.IgnorePlugin(/\.\/locale/,/moment/)
+        new webpack.IgnorePlugin(/\.\/locale/,/moment/),
+        // 多线程打包js, 如果要多线程打包css 要多实例化一个happypack
+        new Happypack({
+            id: 'js',
+            use:  [{
+                loader: 'babel-loader',
+                options: {
+                    // 配置一些语言转换文件， jsx
+                    presets: ['@babel/preset-env', '@babel/preset-react'],
+                    // 一些特殊语法的配置 如： class 装饰器 生成器 遇到的时候再行配置。
+                    plugins: []
+                }
+            }]
+        })
     ],
     module: {
         noParse: /jquery|lodash/,
@@ -96,17 +110,7 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 include: path.resolve(__dirname, '../src'),
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            // 配置一些语言转换文件， jsx
-                            presets: ['@babel/preset-env', '@babel/preset-react'],
-                            // 一些特殊语法的配置 如： class 装饰器 生成器 遇到的时候再行配置。
-                            plugins: []
-                          }
-                    }
-                ]
+                use: 'happypack/loader?id=js'
             }
         ]
     },
