@@ -3,15 +3,21 @@ const argv = process.argv,
 
 const {smart} = require('webpack-merge'),
     base = require('./webpack.config'),
-    path = require('path')
+    path = require('path'),
+    webpack = require('webpack')
 
 module.exports = smart(base, {
     mode: 'development',
     devServer: {
+        // 启用热更新
+        hot: true,
         port: 8080,
         contentBase: path.resolve(__dirname, '../dist'),
         compress: true,
-        // 数据mock
-        
-    }
+    },
+    plugins: [ 
+        new webpack.NamedModulesPlugin(),
+        // 热更新插件
+        new webpack.HotModuleReplacementPlugin()
+    ]
 })
