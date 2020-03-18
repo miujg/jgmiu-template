@@ -3,7 +3,8 @@ const {smart} = require('webpack-merge'),
     path = require('path'),
     webpack = require('webpack'),
     buidConfig = require('./build-config')
-    buidConfig.scssRule.unshift('style-loader')
+
+buidConfig.scssRule.unshift('style-loader')
 
 const ressult = smart(base, {
     mode: 'development',
