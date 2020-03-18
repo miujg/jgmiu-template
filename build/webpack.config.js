@@ -3,7 +3,6 @@
  */
 const path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin')
-    MiniCssExtractPlugin = require('mini-css-extract-plugin'), // 用于css分离
     CopyWebpackPlugin = require('copy-webpack-plugin'),
     webpack = require('webpack'),
     Happypack = require('happypack')
@@ -22,11 +21,6 @@ module.exports = {
             title: 'jgmiu  template',
             // 倒入dll文件
             scripts: '_dll_react.js',
-        }),
-        // css分离
-        new MiniCssExtractPlugin({
-            // 输出到特定目录下 
-            filename: 'css/index.css',
         }),
         //  webpack相关插件
         new webpack.ProvidePlugin({
@@ -78,31 +72,6 @@ module.exports = {
                             // publicPath: '',
                         },
                     },
-                ]
-            },
-            // css处理
-            {
-                test: /\.scss$/,
-                use: [
-                    // css 分离
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            // publicPath: 'http://127.0.0.1:8080/'
-                        }
-                    },
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins:[
-                                require('autoprefixer')({
-                                    overrideBrowserslist: ['last 15 versions']
-                                })
-                            ]
-                        }
-                    },
-                    'sass-loader'
                 ]
             },
             // js处理
