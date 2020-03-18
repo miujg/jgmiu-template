@@ -2,7 +2,10 @@
 const {smart} = require('webpack-merge'),
     base = require('./webpack.config'),
     {CleanWebpackPlugin} = require('clean-webpack-plugin'),
-    MiniCssExtractPlugin = require('mini-css-extract-plugin') // 用于css分离
+    MiniCssExtractPlugin = require('mini-css-extract-plugin'), // 用于css分离
+    buidConfig = require('./build-config')
+
+buidConfig.scssRule.unshift(MiniCssExtractPlugin.loader)
 
 module.exports = smart(base, {
     mode: 'production',
@@ -19,21 +22,7 @@ module.exports = smart(base, {
             // css处理
             {
                 test: /\.scss$/,
-                use:  [
-                    'style-loader',
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins:[
-                                require('autoprefixer')({
-                                    overrideBrowserslist: ['last 15 versions']
-                                })
-                            ]
-                        }
-                    },
-                    'sass-loader'
-                ]
+                use:  buidConfig.scssRule
             },
         ]
     }

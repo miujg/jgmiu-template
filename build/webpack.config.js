@@ -5,7 +5,8 @@ const path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin')
     CopyWebpackPlugin = require('copy-webpack-plugin'),
     webpack = require('webpack'),
-    Happypack = require('happypack')
+    Happypack = require('happypack'),
+    buidConfig = require('./build-config')
 
 module.exports = {
     entry: path.resolve(__dirname, '../src/index.js'),
@@ -18,9 +19,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../src/index.html'),
-            title: 'jgmiu  template',
-            // 倒入dll文件
-            scripts: '_dll_react.js',
+            title: buidConfig.htmlTitle,
+            // 导入dll文件
+            scripts: buidConfig.createScripts(['_dll_react']),
         }),
         //  webpack相关插件
         new webpack.ProvidePlugin({

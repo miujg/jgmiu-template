@@ -1,17 +1,16 @@
-const argv = process.argv,
-    ismock = argv[argv.length - 1] === '--mock'
-
 const {smart} = require('webpack-merge'),
     base = require('./webpack.config'),
     path = require('path'),
-    webpack = require('webpack')
+    webpack = require('webpack'),
+    buidConfig = require('./build-config')
+    buidConfig.scssRule.unshift('style-loader')
 
 const ressult = smart(base, {
     mode: 'development',
     devServer: {
         // 启用热更新
         hot: true,
-        port: 8080,
+        port: buidConfig.devPort,
         contentBase: path.resolve(__dirname, '../dist'),
         compress: true,
     },
@@ -19,21 +18,7 @@ const ressult = smart(base, {
         rules: [
             {
                 test: /\.scss/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins:[
-                                require('autoprefixer')({
-                                    overrideBrowserslist: ['last 15 versions']
-                                })
-                            ]
-                        }
-                    },
-                    'sass-loader'
-                ]
+                use: buidConfig.scssRule
             }
         ]
     },
