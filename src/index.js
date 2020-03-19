@@ -5,6 +5,16 @@ import './index.scss'
 
 import Router from 'con/router/Router'
 
+import {createMock} from './mock/index'
+
+import axios from 'axios'
+
+createMock()
+
+axios.get('/test').then(data => {
+    console.log(data)
+})
+
 render(<h1>JSX</h1>,
     document.getElementById('root'))
 
