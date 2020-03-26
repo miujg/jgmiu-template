@@ -25,6 +25,7 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
     "autoprefixer": "^9.7.4",
@@ -50,6 +51,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "mockjs": "^1.1.0",
+    "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2"

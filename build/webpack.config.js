@@ -50,7 +50,7 @@ module.exports = {
                     // 配置一些语言转换文件， jsx
                     presets: ['@babel/preset-env', '@babel/preset-react'],
                     // 一些特殊语法的配置 如： class 装饰器 生成器 遇到的时候再行配置。
-                    plugins: []
+                    plugins: ['@babel/plugin-proposal-class-properties']
                 }
             }]
         })
