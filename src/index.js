@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import {render} from 'react-dom'
 import PropTypes from 'prop-types'
-import ReactDOM from 'react-dom'
 import './index.scss'
+import {Provider} from 'react-redux'
+import {Router} from 'con/index'
+import store from './redux/store'
 
-
-
-ReactDOM.render(
-  <h1>Hello world</h1>,
-  document.getElementById('root')
+render(
+    <Provider store={store}>
+        <Router />
+    </Provider>,
+   document.getElementById('root')
 )

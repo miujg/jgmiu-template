@@ -1,0 +1,7 @@
+const CHANGE_NAME = 'CHANGE_NAME'
+const CHANGE_VALUE = 'CHANGE_VALUE'
+
+export {
+    CHANGE_NAME,
+    CHANGE_VALUE
+}

@@ -92,7 +92,8 @@ module.exports = {
         alias: {
             images: path.join(process.cwd(), 'src/public/images'),
             com: path.join(process.cwd(),'src/component'),
-            con: path.join(process.cwd(), 'src/containers')
+            con: path.join(process.cwd(), 'src/containers'),
+            action: path.join(process.cwd(), 'src/redux/action')
         }
     },
     // http://webpack.docschina.org/configuration/devtool/ 这里有一个表，总结得非常全面。
