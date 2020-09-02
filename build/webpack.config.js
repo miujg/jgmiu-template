@@ -56,7 +56,6 @@ module.exports = {
         })
     ],
     module: {
-        noParse: /jquery|lodash/,
         rules: [
             // 文件处理
             {
@@ -86,7 +85,7 @@ module.exports = {
     },
     resolve: {
         // 关于第三方模块只会在此文件夹下面找，不会向上找
-        modules: [path.resolve('node_modules')],
+        modules: ['node_modules'],
         extensions: ['.js','.jsx'],
         // 别名
         alias: {
